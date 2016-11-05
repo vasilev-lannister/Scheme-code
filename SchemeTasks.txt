@@ -1,0 +1,59 @@
+//1
+(define (get-last ls)
+	(car(reverse ls )))
+//2
+(define (get-k ls k)
+	(if(= k 0)
+		(car ls)
+		(get-k (cdr ls) (- k 1))))
+//3
+(define (without-last ls)
+	(if(null? (cdr ls))
+		'()
+		(cons (car ls) (without-last (cdr ls)))))
+		
+//4
+(define (is-palindrome ls)
+	(if(null? (cdr ls))
+		#t
+	(if(= (car ls) (get-last ls))
+		(is-palindrome (cdr (without-last ls)))
+		#f)))
+		
+//5
+(define (m-append ls k)
+	(if (null? ls)
+		(list k)
+		(cons (car ls) (m-append (cdr ls) k))))
+		
+//6 
+(define (get-len ls)
+	(if(null? ls)
+		0
+		(+ 1 (get len (cdr ls)))))
+		
+//7
+(define (rem-prefix ls)
+	(if( or (= (get-len ls) 0) (= (get-len ls) 1))
+		'()
+	(if(not (= (car ls) (cadr ls)))
+		(cdr ls)
+		(rem-prefix (cdr ls)))))
+		
+//8- not working :/
+(define (flatten ls)
+	(if (list? (car ls))
+		(append (flatten (car ls)) (flatten (cdr ls)) )
+		(if (null? ls)
+			'()
+			(append (car ls) (flatten (cdr ls))))))
+		
+
+//9
+(define (count-of ls k)
+	(if(null? ls)
+		0
+	(if(= (car ls) k)
+		(+ 1 (count-of (cdr ls) k))
+		(count-of (cdr ls) k))))
+
